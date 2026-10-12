@@ -1,0 +1,25 @@
+{
+ "permissions": {
+  "allow": [
+   "Bash(./bin/track.py:*)",
+   "Bash(python3 bin/track.py:*)",
+   "Bash(python3 bin/practice.py:*)"
+  ],
+  "deny": [
+   "Edit(practice/**)",
+   "Write(practice/**)"
+  ]
+ },
+ "hooks": {
+  "SessionStart": [
+   {
+    "hooks": [
+     {
+      "type": "command",
+      "command": "cd \"$CLAUDE_PROJECT_DIR\" && [ -f state/lesson.json ] && python3 bin/lesson.py context || echo 'Нет state/: новый ученик — python3 bin/init_learner.py (ONBOARDING.md)'"
+     }
+    ]
+   }
+  ]
+ }
+}

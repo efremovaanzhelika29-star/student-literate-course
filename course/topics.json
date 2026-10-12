@@ -1,0 +1,1251 @@
+{
+ "version": 1,
+ "course": "literary-craft",
+ "nominal_hours_per_week": 9,
+ "review_intervals_days": [
+  7,
+  21,
+  60,
+  150
+ ],
+ "close_threshold": 8,
+ "stages": [
+  {
+   "id": "S0",
+   "n": 0,
+   "title": "Старт и аудит базы",
+   "doc": "00-rules.md",
+   "weeks": [
+    0,
+    0
+   ],
+   "hours": 6,
+   "artifact": "Честная карта пробелов в state/profile.md"
+  },
+  {
+   "id": "S1",
+   "n": 1,
+   "title": "Инструменты автора",
+   "doc": "01-stage-tools.md",
+   "weeks": [
+    1,
+    6
+   ],
+   "hours": 50,
+   "artifact": "Ящик инструментов: 10 приёмов + 4 этюда + 3 карты разбора",
+   "topic_hours": 50
+  },
+  {
+   "id": "S2",
+   "n": 2,
+   "title": "Миф и древние тексты",
+   "doc": "02-stage-myth.md",
+   "weeks": [
+    7,
+    14
+   ],
+   "hours": 68,
+   "artifact": "Рассказ №1 сборника: перелицовка мифа + авторский комментарий",
+   "topic_hours": 68
+  },
+  {
+   "id": "S3",
+   "n": 3,
+   "title": "Русская литература",
+   "doc": "03-stage-russia.md",
+   "weeks": [
+    15,
+    21
+   ],
+   "hours": 59,
+   "artifact": "Рассказ №2: психологическая проза в русской традиции",
+   "topic_hours": 59
+  },
+  {
+   "id": "S4",
+   "n": 4,
+   "title": "Европа и Америка",
+   "doc": "04-stage-west.md",
+   "weeks": [
+    22,
+    30
+   ],
+   "hours": 77,
+   "artifact": "Рассказ №3 + сцена-пьеса",
+   "topic_hours": 77
+  },
+  {
+   "id": "S5",
+   "n": 5,
+   "title": "Восток и мировая классика",
+   "doc": "05-stage-east.md",
+   "weeks": [
+    31,
+    38
+   ],
+   "hours": 68,
+   "artifact": "Рассказ №4 с кросс-культурным каркасом",
+   "topic_hours": 68
+  },
+  {
+   "id": "S6",
+   "n": 6,
+   "title": "Мастерская и выход в профессию",
+   "doc": "06-stage-craft.md",
+   "weeks": [
+    39,
+    46
+   ],
+   "hours": 68,
+   "artifact": "Сборник (Project A) + авторский комментарий + программа чтеца + первая подача",
+   "topic_hours": 68
+  }
+ ],
+ "topics": [
+  {
+   "id": "T01",
+   "stage": "S1",
+   "title": "Роды, жанры, направления",
+   "hours": 8,
+   "sources": [
+    "knowledge/lectures/01-literature-basics.md"
+   ],
+   "packets": [
+    {
+     "id": "T01-P1",
+     "kind": "theory",
+     "title": "Теория и вопросы"
+    },
+    {
+     "id": "T01-P2",
+     "kind": "map",
+     "title": "Карта разбора",
+     "works": "Чехов «Тоска»"
+    },
+    {
+     "id": "T01-P3",
+     "kind": "etude",
+     "title": "Этюд",
+     "task": "Одна сцена в двух манерах: сентиментальной и модернистской (1–2 тыс. зн. каждая)",
+     "stages": 2
+    }
+   ]
+  },
+  {
+   "id": "T02",
+   "stage": "S1",
+   "title": "Фабула и сюжет, композиция, хронотоп",
+   "hours": 8,
+   "sources": [
+    "knowledge/lectures/02-text-anatomy.md"
+   ],
+   "packets": [
+    {
+     "id": "T02-P1",
+     "kind": "theory",
+     "title": "Теория и вопросы"
+    },
+    {
+     "id": "T02-P2",
+     "kind": "map",
+     "title": "Карта разбора",
+     "works": "Лермонтов «Герой нашего времени» (композиция)"
+    },
+    {
+     "id": "T02-P3",
+     "kind": "etude",
+     "title": "Этюд",
+     "task": "Одно событие в обратной хронологии (3–5 тыс. зн.)",
+     "stages": 2
+    }
+   ]
+  },
+  {
+   "id": "T03",
+   "stage": "S1",
+   "title": "Рассказчик, фокализация, несобственно-прямая речь",
+   "hours": 8,
+   "sources": [
+    "knowledge/lectures/02-text-anatomy.md"
+   ],
+   "packets": [
+    {
+     "id": "T03-P1",
+     "kind": "theory",
+     "title": "Теория и вопросы"
+    },
+    {
+     "id": "T03-P2",
+     "kind": "map",
+     "title": "Карта разбора",
+     "works": "По «Сердце-обличитель»"
+    },
+    {
+     "id": "T03-P3",
+     "kind": "etude",
+     "title": "Этюд",
+     "task": "«Колобок» тремя способами фокализации (по 700–1000 зн.)",
+     "stages": 2
+    }
+   ]
+  },
+  {
+   "id": "T04",
+   "stage": "S1",
+   "title": "Драматургия I: вопрос, тайна, напряжение, ирония, ставки",
+   "hours": 8,
+   "sources": [
+    "knowledge/dramaturgy/00-instrumenty.md"
+   ],
+   "packets": [
+    {
+     "id": "T04-P1",
+     "kind": "theory",
+     "title": "Теория и вопросы"
+    },
+    {
+     "id": "T04-P2",
+     "kind": "map",
+     "title": "Карта разбора",
+     "works": "Чехов «Тоска»"
+    },
+    {
+     "id": "T04-P3",
+     "kind": "etude",
+     "title": "Этюд",
+     "task": "«Мой текст» из разбора «Тоски» (4–6 тыс. зн.)",
+     "stages": 2
+    }
+   ]
+  },
+  {
+   "id": "T05",
+   "stage": "S1",
+   "title": "Драматургия II: желание и потребность, конфликт, структура, сцена",
+   "hours": 9,
+   "sources": [
+    "knowledge/dramaturgy/00-instrumenty.md"
+   ],
+   "packets": [
+    {
+     "id": "T05-P1",
+     "kind": "theory",
+     "title": "Теория и вопросы"
+    },
+    {
+     "id": "T05-P2",
+     "kind": "map",
+     "title": "Карта разбора",
+     "works": "Чехов «Дама с собачкой», «Студент»"
+    },
+    {
+     "id": "T05-P3",
+     "kind": "etude",
+     "title": "Этюд",
+     "task": "Рассказ в форме кисётэнкэцу (5–8 тыс. зн.)",
+     "stages": 2
+    }
+   ]
+  },
+  {
+   "id": "T06",
+   "stage": "S1",
+   "title": "Интертекст: типы отсылок, функции, Женетт",
+   "hours": 9,
+   "sources": [
+    "knowledge/lectures/03-intertext-theory.md",
+    "knowledge/reference/craft.md"
+   ],
+   "packets": [
+    {
+     "id": "T06-P1",
+     "kind": "theory",
+     "title": "Теория и вопросы"
+    },
+    {
+     "id": "T06-P2",
+     "kind": "map",
+     "title": "Карта разбора",
+     "works": "Чехов «Студент» (ситуационная рифма)"
+    },
+    {
+     "id": "T06-P3",
+     "kind": "etude",
+     "title": "Этюд",
+     "task": "Одна цитата в трёх функциях: углубление, ирония, характеристика (по 500–1000 зн.)",
+     "stages": 2
+    }
+   ]
+  },
+  {
+   "id": "T07",
+   "stage": "S2",
+   "title": "Теория мифа, архетипы, Пропп и Кэмпбелл",
+   "hours": 9,
+   "sources": [
+    "knowledge/lectures/04-myth-theory.md"
+   ],
+   "packets": [
+    {
+     "id": "T07-P1",
+     "kind": "theory",
+     "title": "Теория и вопросы"
+    },
+    {
+     "id": "T07-P2",
+     "kind": "map",
+     "title": "Карта разбора",
+     "works": "Сказка «Царевна-лягушка» по функциям Проппа"
+    },
+    {
+     "id": "T07-P3",
+     "kind": "etude",
+     "title": "Этюд",
+     "task": "Городской рассказ по функциям Проппа без волшебства (8–12 тыс. зн.)",
+     "stages": 2
+    }
+   ]
+  },
+  {
+   "id": "T08",
+   "stage": "S2",
+   "title": "Греческая мифология",
+   "hours": 9,
+   "sources": [
+    "knowledge/lectures/05-greek-myth.md",
+    "knowledge/reference/myth/greco-roman.md"
+   ],
+   "packets": [
+    {
+     "id": "T08-P1",
+     "kind": "theory",
+     "title": "Теория и вопросы"
+    },
+    {
+     "id": "T08-P2",
+     "kind": "map",
+     "title": "Карта разбора",
+     "works": "Овидий «Метаморфозы»: Дедал и Икар, Филемон и Бавкида"
+    },
+    {
+     "id": "T08-P3",
+     "kind": "etude",
+     "title": "Этюд",
+     "task": "Перелицовка мифа из «Метаморфоз» без называния (5–8 тыс. зн.)",
+     "stages": 2
+    }
+   ]
+  },
+  {
+   "id": "T09",
+   "stage": "S2",
+   "title": "Гомер: «Илиада» и «Одиссея» как механизмы",
+   "hours": 10,
+   "sources": [
+    "knowledge/lectures/06-homer-tragedy.md",
+    "knowledge/dramaturgy/01-antichnost.md"
+   ],
+   "packets": [
+    {
+     "id": "T09-P1",
+     "kind": "theory",
+     "title": "Теория и вопросы"
+    },
+    {
+     "id": "T09-P2",
+     "kind": "map",
+     "title": "Карта разбора",
+     "works": "«Одиссея» (песни IX–XII, XIX–XXIII)"
+    },
+    {
+     "id": "T09-P3",
+     "kind": "etude",
+     "title": "Этюд",
+     "task": "«Возвращение»: три узнавания по нарастающей (8–12 тыс. зн.)",
+     "stages": 2
+    }
+   ]
+  },
+  {
+   "id": "T10",
+   "stage": "S2",
+   "title": "Трагедия и «Поэтика» Аристотеля",
+   "hours": 10,
+   "sources": [
+    "knowledge/lectures/06-homer-tragedy.md",
+    "knowledge/dramaturgy/01-antichnost.md"
+   ],
+   "packets": [
+    {
+     "id": "T10-P1",
+     "kind": "theory",
+     "title": "Теория и вопросы"
+    },
+    {
+     "id": "T10-P2",
+     "kind": "map",
+     "title": "Карта разбора",
+     "works": "Софокл «Царь Эдип», «Антигона»; Еврипид «Медея»"
+    },
+    {
+     "id": "T10-P3",
+     "kind": "etude",
+     "title": "Этюд",
+     "task": "Детектив по модели «Эдипа» или спор двух правд (8–12 тыс. зн.)",
+     "stages": 2
+    }
+   ]
+  },
+  {
+   "id": "T11",
+   "stage": "S2",
+   "title": "Библия как литература",
+   "hours": 10,
+   "sources": [
+    "knowledge/lectures/07-bible.md",
+    "knowledge/dramaturgy/02-bibliya-drevnost.md",
+    "knowledge/reference/myth/biblical.md"
+   ],
+   "packets": [
+    {
+     "id": "T11-P1",
+     "kind": "theory",
+     "title": "Теория и вопросы"
+    },
+    {
+     "id": "T11-P2",
+     "kind": "map",
+     "title": "Карта разбора",
+     "works": "Быт 22; история Иосифа; Лк 15"
+    },
+    {
+     "id": "T11-P3",
+     "kind": "etude",
+     "title": "Этюд",
+     "task": "Сцена-умолчание по модели Быт 22 (2–3 тыс. зн.) или рассказ о возвращении",
+     "stages": 2
+    }
+   ]
+  },
+  {
+   "id": "T12",
+   "stage": "S2",
+   "title": "Древний мир: Гильгамеш, Египет, Индия, Иран, Китай",
+   "hours": 9,
+   "sources": [
+    "knowledge/lectures/08-ancient-world.md",
+    "knowledge/dramaturgy/02-bibliya-drevnost.md"
+   ],
+   "packets": [
+    {
+     "id": "T12-P1",
+     "kind": "theory",
+     "title": "Теория и вопросы"
+    },
+    {
+     "id": "T12-P2",
+     "kind": "map",
+     "title": "Карта разбора",
+     "works": "«Эпос о Гильгамеше»"
+    },
+    {
+     "id": "T12-P3",
+     "kind": "etude",
+     "title": "Этюд",
+     "task": "Кольцевой рассказ: один абзац в начале и в конце (8–12 тыс. зн.)",
+     "stages": 2
+    }
+   ]
+  },
+  {
+   "id": "T13",
+   "stage": "S2",
+   "title": "Мифологии мира и сравнительный указатель мотивов",
+   "hours": 11,
+   "sources": [
+    "knowledge/lectures/09-world-mythologies.md",
+    "knowledge/reference/myth/motifs.md",
+    "knowledge/reference/myth/slavic.md",
+    "knowledge/reference/myth/celtic-norse.md"
+   ],
+   "packets": [
+    {
+     "id": "T13-P1",
+     "kind": "theory",
+     "title": "Теория и вопросы"
+    },
+    {
+     "id": "T13-P2",
+     "kind": "map",
+     "title": "Карта разбора",
+     "works": "Мотив «запрет оглядываться» в трёх традициях"
+    },
+    {
+     "id": "T13-P3",
+     "kind": "etude",
+     "title": "Этюд",
+     "task": "Рассказ на мотив, а не на миф: версия выбрана смыслово (6–10 тыс. зн.)",
+     "stages": 2
+    }
+   ]
+  },
+  {
+   "id": "T14",
+   "stage": "S3",
+   "title": "От «Слова» до Пушкина",
+   "hours": 11,
+   "sources": [
+    "knowledge/lectures/10-russia-to-pushkin.md",
+    "knowledge/dramaturgy/03-rossiya-xix.md",
+    "knowledge/reference/canon/russia.md"
+   ],
+   "packets": [
+    {
+     "id": "T14-P1",
+     "kind": "theory",
+     "title": "Теория и вопросы"
+    },
+    {
+     "id": "T14-P2",
+     "kind": "map",
+     "title": "Карта разбора",
+     "works": "«Онегин», «Пиковая дама», «Станционный смотритель»"
+    },
+    {
+     "id": "T14-P3",
+     "kind": "etude",
+     "title": "Этюд",
+     "task": "Две зеркальные сцены или рассказ о трёх визитах (6–8 тыс. зн.)",
+     "stages": 2
+    }
+   ]
+  },
+  {
+   "id": "T15",
+   "stage": "S3",
+   "title": "Лермонтов и Гоголь",
+   "hours": 11,
+   "sources": [
+    "knowledge/lectures/11-russia-19c.md",
+    "knowledge/dramaturgy/03-rossiya-xix.md"
+   ],
+   "packets": [
+    {
+     "id": "T15-P1",
+     "kind": "theory",
+     "title": "Теория и вопросы"
+    },
+    {
+     "id": "T15-P2",
+     "kind": "map",
+     "title": "Карта разбора",
+     "works": "«Шинель», «Ревизор»"
+    },
+    {
+     "id": "T15-P3",
+     "kind": "etude",
+     "title": "Этюд",
+     "task": "Рассказ о человеке и одной вещи, сказовым голосом (8–12 тыс. зн.)",
+     "stages": 2
+    }
+   ]
+  },
+  {
+   "id": "T16",
+   "stage": "S3",
+   "title": "Достоевский и Толстой",
+   "hours": 12,
+   "sources": [
+    "knowledge/lectures/11-russia-19c.md",
+    "knowledge/dramaturgy/03-rossiya-xix.md"
+   ],
+   "packets": [
+    {
+     "id": "T16-P1",
+     "kind": "theory",
+     "title": "Теория и вопросы"
+    },
+    {
+     "id": "T16-P2",
+     "kind": "map",
+     "title": "Карта разбора",
+     "works": "«Преступление и наказание», «Смерть Ивана Ильича»"
+    },
+    {
+     "id": "T16-P3",
+     "kind": "etude",
+     "title": "Этюд",
+     "task": "Созревание решения через 5–6 сужающих сцен (15 тыс. зн.)",
+     "stages": 2
+    }
+   ]
+  },
+  {
+   "id": "T17",
+   "stage": "S3",
+   "title": "Чехов: рассказ и пьеса",
+   "hours": 12,
+   "sources": [
+    "knowledge/lectures/11-russia-19c.md",
+    "knowledge/dramaturgy/03-rossiya-xix.md"
+   ],
+   "packets": [
+    {
+     "id": "T17-P1",
+     "kind": "theory",
+     "title": "Теория и вопросы"
+    },
+    {
+     "id": "T17-P2",
+     "kind": "map",
+     "title": "Карта разбора",
+     "works": "«Дама с собачкой», «Вишнёвый сад»"
+    },
+    {
+     "id": "T17-P3",
+     "kind": "etude",
+     "title": "Этюд",
+     "task": "Сцена-пьеса: обед в день необратимого (6–10 тыс. зн.)",
+     "stages": 2
+    }
+   ]
+  },
+  {
+   "id": "T18",
+   "stage": "S3",
+   "title": "Русский XX век",
+   "hours": 13,
+   "sources": [
+    "knowledge/lectures/12-russia-20c.md",
+    "knowledge/dramaturgy/04-rossiya-xx.md"
+   ],
+   "packets": [
+    {
+     "id": "T18-P1",
+     "kind": "theory",
+     "title": "Теория и вопросы"
+    },
+    {
+     "id": "T18-P2",
+     "kind": "map",
+     "title": "Карта разбора",
+     "works": "«Мастер и Маргарита», «Лёгкое дыхание», «Матрёнин двор»"
+    },
+    {
+     "id": "T18-P3",
+     "kind": "etude",
+     "title": "Этюд",
+     "task": "Тяжёлый сюжет дважды: по хронологии и по Бунину (по 4–6 тыс. зн.)",
+     "stages": 2
+    }
+   ]
+  },
+  {
+   "id": "T19",
+   "stage": "S4",
+   "title": "Шекспир",
+   "hours": 11,
+   "sources": [
+    "knowledge/lectures/13-britain.md",
+    "knowledge/dramaturgy/05-britaniya.md",
+    "knowledge/reference/canon/uk.md"
+   ],
+   "packets": [
+    {
+     "id": "T19-P1",
+     "kind": "theory",
+     "title": "Теория и вопросы"
+    },
+    {
+     "id": "T19-P2",
+     "kind": "map",
+     "title": "Карта разбора",
+     "works": "«Гамлет», «Макбет», «Отелло» (III, 3)"
+    },
+    {
+     "id": "T19-P3",
+     "kind": "etude",
+     "title": "Этюд",
+     "task": "Сцена манипуляции без прямых обвинений (4–6 тыс. зн.)",
+     "stages": 2
+    }
+   ]
+  },
+  {
+   "id": "T20",
+   "stage": "S4",
+   "title": "Английский роман",
+   "hours": 10,
+   "sources": [
+    "knowledge/lectures/13-britain.md",
+    "knowledge/dramaturgy/05-britaniya.md"
+   ],
+   "packets": [
+    {
+     "id": "T20-P1",
+     "kind": "theory",
+     "title": "Теория и вопросы"
+    },
+    {
+     "id": "T20-P2",
+     "kind": "map",
+     "title": "Карта разбора",
+     "works": "«Франкенштейн», «Джекил и Хайд», «1984», «Инспектор пришёл»"
+    },
+    {
+     "id": "T20-P3",
+     "kind": "etude",
+     "title": "Этюд",
+     "task": "Свидетель снаружи + документ-исповедь изнутри (8–12 тыс. зн.)",
+     "stages": 2
+    }
+   ]
+  },
+  {
+   "id": "T21",
+   "stage": "S4",
+   "title": "Франция",
+   "hours": 11,
+   "sources": [
+    "knowledge/lectures/15-france.md",
+    "knowledge/dramaturgy/07-franciya.md",
+    "knowledge/reference/canon/france.md"
+   ],
+   "packets": [
+    {
+     "id": "T21-P1",
+     "kind": "theory",
+     "title": "Теория и вопросы"
+    },
+    {
+     "id": "T21-P2",
+     "kind": "map",
+     "title": "Карта разбора",
+     "works": "«Тартюф», «Ожерелье», «Госпожа Бовари», «Посторонний»"
+    },
+    {
+     "id": "T21-P3",
+     "kind": "etude",
+     "title": "Этюд",
+     "task": "Новелла с одной пружиной и финалом-репликой (4–6 тыс. зн.)",
+     "stages": 2
+    }
+   ]
+  },
+  {
+   "id": "T22",
+   "stage": "S4",
+   "title": "Германия",
+   "hours": 11,
+   "sources": [
+    "knowledge/lectures/16-germany.md",
+    "knowledge/dramaturgy/08-germaniya.md",
+    "knowledge/reference/canon/germany.md"
+   ],
+   "packets": [
+    {
+     "id": "T22-P1",
+     "kind": "theory",
+     "title": "Теория и вопросы"
+    },
+    {
+     "id": "T22-P2",
+     "kind": "map",
+     "title": "Карта разбора",
+     "works": "«Превращение», «Визит старой дамы», «Мамаша Кураж»"
+    },
+    {
+     "id": "T22-P3",
+     "kind": "etude",
+     "title": "Этюд",
+     "task": "Невозможное в первой фразе + реализм последствий (8–12 тыс. зн.)",
+     "stages": 2
+    }
+   ]
+  },
+  {
+   "id": "T23",
+   "stage": "S4",
+   "title": "Данте, Сервантес, рамочные книги",
+   "hours": 10,
+   "sources": [
+    "knowledge/lectures/20-world-classics.md",
+    "knowledge/dramaturgy/12-mir.md"
+   ],
+   "packets": [
+    {
+     "id": "T23-P1",
+     "kind": "theory",
+     "title": "Теория и вопросы"
+    },
+    {
+     "id": "T23-P2",
+     "kind": "map",
+     "title": "Карта разбора",
+     "works": "«Ад» (V, XXVI, XXXIII), «Дон Кихот», «1001 ночь»"
+    },
+    {
+     "id": "T23-P3",
+     "kind": "etude",
+     "title": "Этюд",
+     "task": "Рамочный рассказ: истории как способ выжить (12–20 тыс. зн.)",
+     "stages": 2
+    }
+   ]
+  },
+  {
+   "id": "T24",
+   "stage": "S4",
+   "title": "США: По, Фицджеральд, Хемингуэй, Стейнбек",
+   "hours": 11,
+   "sources": [
+    "knowledge/lectures/14-usa.md",
+    "knowledge/dramaturgy/06-ssha.md",
+    "knowledge/reference/canon/usa.md"
+   ],
+   "packets": [
+    {
+     "id": "T24-P1",
+     "kind": "theory",
+     "title": "Теория и вопросы"
+    },
+    {
+     "id": "T24-P2",
+     "kind": "map",
+     "title": "Карта разбора",
+     "works": "«Великий Гэтсби», «Белые слоны», «О мышах и людях»"
+    },
+    {
+     "id": "T24-P3",
+     "kind": "etude",
+     "title": "Этюд",
+     "task": "Диалог-айсберг: главное ни разу не названо (3–5 тыс. зн.)",
+     "stages": 2
+    }
+   ]
+  },
+  {
+   "id": "T25",
+   "stage": "S4",
+   "title": "Американская драма",
+   "hours": 13,
+   "sources": [
+    "knowledge/lectures/14-usa.md",
+    "knowledge/dramaturgy/06-ssha.md"
+   ],
+   "packets": [
+    {
+     "id": "T25-P1",
+     "kind": "theory",
+     "title": "Теория и вопросы"
+    },
+    {
+     "id": "T25-P2",
+     "kind": "map",
+     "title": "Карта разбора",
+     "works": "«Смерть коммивояжёра», «Суровое испытание», «Трамвай „Желание“»"
+    },
+    {
+     "id": "T25-P3",
+     "kind": "etude",
+     "title": "Этюд",
+     "task": "Сцена: прошлое и настоящее одновременно, без «он вспомнил» (6–10 тыс. зн.)",
+     "stages": 2
+    }
+   ]
+  },
+  {
+   "id": "T26",
+   "stage": "S5",
+   "title": "Япония: классика",
+   "hours": 10,
+   "sources": [
+    "knowledge/lectures/17-japan.md",
+    "knowledge/dramaturgy/09-yaponiya.md",
+    "knowledge/reference/myth/japanese.md",
+    "knowledge/reference/canon/japan.md"
+   ],
+   "packets": [
+    {
+     "id": "T26-P1",
+     "kind": "theory",
+     "title": "Теория и вопросы"
+    },
+    {
+     "id": "T26-P2",
+     "kind": "map",
+     "title": "Карта разбора",
+     "works": "«Такэтори», «Гибель Ацумори»"
+    },
+    {
+     "id": "T26-P3",
+     "kind": "etude",
+     "title": "Этюд",
+     "task": "Пять провалов с разной механикой + шестой иной (8–12 тыс. зн.) и 10 хайку",
+     "stages": 2
+    }
+   ]
+  },
+  {
+   "id": "T27",
+   "stage": "S5",
+   "title": "Япония: Акутагава — Кавабата",
+   "hours": 12,
+   "sources": [
+    "knowledge/lectures/17-japan.md",
+    "knowledge/dramaturgy/09-yaponiya.md"
+   ],
+   "packets": [
+    {
+     "id": "T27-P1",
+     "kind": "theory",
+     "title": "Теория и вопросы"
+    },
+    {
+     "id": "T27-P2",
+     "kind": "map",
+     "title": "Карта разбора",
+     "works": "«Ворота Расёмон», «В чаще», «Сердце», «Луна над горами»"
+    },
+    {
+     "id": "T27-P3",
+     "kind": "etude",
+     "title": "Этюд",
+     "task": "Рассказ из несовместимых показаний (8–12 тыс. зн.)",
+     "stages": 2
+    }
+   ]
+  },
+  {
+   "id": "T28",
+   "stage": "S5",
+   "title": "Корея",
+   "hours": 11,
+   "sources": [
+    "knowledge/lectures/18-korea.md",
+    "knowledge/dramaturgy/10-koreya.md",
+    "knowledge/reference/myth/korean.md",
+    "knowledge/reference/canon/korea.md"
+   ],
+   "packets": [
+    {
+     "id": "T28-P1",
+     "kind": "theory",
+     "title": "Теория и вопросы"
+    },
+    {
+     "id": "T28-P2",
+     "kind": "map",
+     "title": "Карта разбора",
+     "works": "«Чхунхян», «Счастливый день», «Вегетарианка»"
+    },
+    {
+     "id": "T28-P3",
+     "kind": "etude",
+     "title": "Этюд",
+     "task": "Рассказ с иронией названия или героиня без голоса (5–12 тыс. зн.)",
+     "stages": 2
+    }
+   ]
+  },
+  {
+   "id": "T29",
+   "stage": "S5",
+   "title": "Турция и тюркский мир",
+   "hours": 11,
+   "sources": [
+    "knowledge/lectures/19-turkey.md",
+    "knowledge/dramaturgy/11-turciya.md",
+    "knowledge/reference/myth/turkic.md",
+    "knowledge/reference/canon/turkey.md"
+   ],
+   "packets": [
+    {
+     "id": "T29-P1",
+     "kind": "theory",
+     "title": "Теория и вопросы"
+    },
+    {
+     "id": "T29-P2",
+     "kind": "map",
+     "title": "Карта разбора",
+     "works": "«Деде Коркут», Насреддин, «Мадонна в меховом манто»"
+    },
+    {
+     "id": "T29-P3",
+     "kind": "etude",
+     "title": "Этюд",
+     "task": "10 анекдотов-финалов или рассказ «тетрадь незаметного человека»",
+     "stages": 2
+    }
+   ]
+  },
+  {
+   "id": "T30",
+   "stage": "S5",
+   "title": "Мировая классика: Китай, Борхес, Маркес, Ибсен, Андерсен",
+   "hours": 12,
+   "sources": [
+    "knowledge/lectures/20-world-classics.md",
+    "knowledge/dramaturgy/12-mir.md"
+   ],
+   "packets": [
+    {
+     "id": "T30-P1",
+     "kind": "theory",
+     "title": "Теория и вопросы"
+    },
+    {
+     "id": "T30-P2",
+     "kind": "map",
+     "title": "Карта разбора",
+     "works": "Борхес «Юг», Маркес «Хроника объявленной смерти», «Кукольный дом»"
+    },
+    {
+     "id": "T30-P3",
+     "kind": "etude",
+     "title": "Этюд",
+     "task": "Финал в первой фразе + кто мог помешать (8–12 тыс. зн.)",
+     "stages": 2
+    }
+   ]
+  },
+  {
+   "id": "T31",
+   "stage": "S5",
+   "title": "Отсылка к незнакомой читателю традиции",
+   "hours": 12,
+   "sources": [
+    "knowledge/lectures/21-prose-craft.md",
+    "knowledge/reference/craft.md"
+   ],
+   "packets": [
+    {
+     "id": "T31-P1",
+     "kind": "theory",
+     "title": "Теория и вопросы"
+    },
+    {
+     "id": "T31-P2",
+     "kind": "map",
+     "title": "Карта разбора",
+     "works": "«Беги, Мелос!» как переработка Шиллера"
+    },
+    {
+     "id": "T31-P3",
+     "kind": "etude",
+     "title": "Этюд",
+     "task": "Сюжет «Сим Чхон»/«Чхунхян» как каркас русского рассказа + комментарий",
+     "stages": 2
+    }
+   ]
+  },
+  {
+   "id": "T32",
+   "stage": "S6",
+   "title": "Сцена, деталь, дистанция, диалог",
+   "hours": 11,
+   "sources": [
+    "knowledge/lectures/21-prose-craft.md"
+   ],
+   "packets": [
+    {
+     "id": "T32-P1",
+     "kind": "theory",
+     "title": "Теория и вопросы"
+    },
+    {
+     "id": "T32-P2",
+     "kind": "map",
+     "title": "Карта разбора",
+     "works": "Хемингуэй «Белые слоны» (диалог)"
+    },
+    {
+     "id": "T32-P3",
+     "kind": "etude",
+     "title": "Этюд",
+     "task": "Абзац в пяти точках психической дистанции + сцена-диалог",
+     "stages": 2
+    }
+   ]
+  },
+  {
+   "id": "T33",
+   "stage": "S6",
+   "title": "Технология отсылки: алгоритм, приёмы, ошибки, этика",
+   "hours": 11,
+   "sources": [
+    "knowledge/lectures/21-prose-craft.md",
+    "knowledge/reference/craft.md"
+   ],
+   "packets": [
+    {
+     "id": "T33-P1",
+     "kind": "theory",
+     "title": "Теория и вопросы"
+    },
+    {
+     "id": "T33-P2",
+     "kind": "map",
+     "title": "Карта разбора",
+     "works": "Свой рассказ из портфолио"
+    },
+    {
+     "id": "T33-P3",
+     "kind": "etude",
+     "title": "Этюд",
+     "task": "«Семь вариаций»: одна сцена — семь приёмов встраивания",
+     "stages": 2
+    }
+   ]
+  },
+  {
+   "id": "T34",
+   "stage": "S6",
+   "title": "Редактура и второй вариант",
+   "hours": 11,
+   "sources": [
+    "knowledge/lectures/21-prose-craft.md"
+   ],
+   "packets": [
+    {
+     "id": "T34-P1",
+     "kind": "theory",
+     "title": "Теория и вопросы"
+    },
+    {
+     "id": "T34-P2",
+     "kind": "map",
+     "title": "Карта разбора",
+     "works": "Свой рассказ из портфолио"
+    },
+    {
+     "id": "T34-P3",
+     "kind": "etude",
+     "title": "Этюд",
+     "task": "Редактура рассказа: −10 %, правила Оруэлла, «до/после»",
+     "stages": 2
+    }
+   ]
+  },
+  {
+   "id": "T35",
+   "stage": "S6",
+   "title": "Литература для актёра: анализ пьесы и роли",
+   "hours": 12,
+   "sources": [
+    "knowledge/lectures/22-actor.md"
+   ],
+   "packets": [
+    {
+     "id": "T35-P1",
+     "kind": "theory",
+     "title": "Теория и вопросы"
+    },
+    {
+     "id": "T35-P2",
+     "kind": "theory",
+     "title": "Анализ и вопросы",
+     "works": "«Чайка» или «Гроза» — одна роль"
+    },
+    {
+     "id": "T35-P3",
+     "kind": "etude",
+     "title": "Этюд",
+     "task": "Письменный анализ роли: обстоятельства, события, сверхзадача",
+     "stages": 2
+    }
+   ]
+  },
+  {
+   "id": "T36",
+   "stage": "S6",
+   "title": "Сценическая речь и программа чтеца",
+   "hours": 11,
+   "sources": [
+    "knowledge/lectures/22-actor.md"
+   ],
+   "packets": [
+    {
+     "id": "T36-P1",
+     "kind": "theory",
+     "title": "Теория и вопросы"
+    },
+    {
+     "id": "T36-P2",
+     "kind": "theory",
+     "title": "Анализ и вопросы",
+     "works": "Монолог из программы"
+    },
+    {
+     "id": "T36-P3",
+     "kind": "etude",
+     "title": "Этюд",
+     "task": "Разметка монолога + видео: басня, стихотворение, проза",
+     "stages": 2
+    }
+   ]
+  },
+  {
+   "id": "T37",
+   "stage": "S6",
+   "title": "Карьера: подача, конкурсы, портфолио",
+   "hours": 12,
+   "sources": [
+    "knowledge/lectures/23-career.md"
+   ],
+   "packets": [
+    {
+     "id": "T37-P1",
+     "kind": "theory",
+     "title": "Теория и вопросы"
+    },
+    {
+     "id": "T37-P2",
+     "kind": "theory",
+     "title": "Анализ и вопросы",
+     "works": "—"
+    },
+    {
+     "id": "T37-P3",
+     "kind": "etude",
+     "title": "Этюд",
+     "task": "Сопроводительное письмо + синопсис + план на 5 лет",
+     "stages": 2
+    }
+   ]
+  }
+ ],
+ "checkpoints": [
+  {
+   "id": "CP1",
+   "stage": "S1",
+   "title": "Чекпоинт этапа 1"
+  },
+  {
+   "id": "CP2",
+   "stage": "S2",
+   "title": "Чекпоинт этапа 2"
+  },
+  {
+   "id": "CP3",
+   "stage": "S3",
+   "title": "Чекпоинт этапа 3"
+  },
+  {
+   "id": "CP4",
+   "stage": "S4",
+   "title": "Чекпоинт этапа 4"
+  },
+  {
+   "id": "CP5",
+   "stage": "S5",
+   "title": "Чекпоинт этапа 5"
+  },
+  {
+   "id": "CP6",
+   "stage": "S6",
+   "title": "Чекпоинт этапа 6"
+  }
+ ]
+}
