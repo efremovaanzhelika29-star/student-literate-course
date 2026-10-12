@@ -1,6 +1,6 @@
 # Личное состояние и практика ученицы — не часть курса
-state/
-practice/
+/state/
+/practice/
 .claude/settings.local.json
 __pycache__/
 *.pyc

@@ -2,6 +2,7 @@
 """Расписание ученицы и прогноз сроков курса (mentoring/planning.md).
 
   python3 bin/plan.py set --start 2026-10-19 --mon 60 --wed 90 --sat 180 [--break 2026-12-30:2027-01-08]
+  python3 bin/plan.py tracks [TR1 TR3 …|--none]   выбрать треки (без аргументов — показать)
   python3 bin/plan.py forecast            прогноз: окончание этапов и курса по расписанию
   python3 bin/plan.py apply --yes         записать согласованные даты тем в state/topics.json
 
@@ -15,6 +16,9 @@ import datetime as dt
 import json
 import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from courselib import route_stages, route_topics, track_ids  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 STATE = ROOT / "state"
@@ -40,7 +44,9 @@ def forecast(cfg: dict, course: dict) -> tuple[list[tuple[str, str, float, dt.da
         sys.exit("Расписание не задано: python3 bin/plan.py set --start ГГГГ-ММ-ДД --mon 60 …")
     breaks = [(dt.date.fromisoformat(a), dt.date.fromisoformat(b)) for a, b in sch.get("breaks", [])]
     day = dt.date.fromisoformat(sch["start"]) - dt.timedelta(days=1)
-    items = [("S0", "Старт и аудит", 6.0)] + [(t["id"], t["title"], float(t["hours"])) for t in course["topics"]]
+    tracks = cfg.get("tracks", [])
+    items = [("S0", "Старт и аудит", 6.0)] + [(t["id"], t["title"], float(t["hours"]))
+                                              for t in route_topics(course, tracks)]
     out = []
     pool = 0.0
     for tid, title, hours in items:
@@ -87,8 +93,9 @@ def cmd_forecast(_: argparse.Namespace) -> int:
     tstage = {t["id"]: t["stage"] for t in course["topics"]}
     for tid, _, _, d in rows:
         stage_end[tstage.get(tid, "S0")] = d
-    for s in course["stages"]:
-        print(f"  Этап {s['n']}. {s['title']}: до {stage_end[s['id']].isoformat()}")
+    for s in route_stages(course, cfg.get("tracks", [])):
+        name = f"Этап {s['n']}" if s.get("kind", "core") == "core" else f"  Трек {s['id']}"
+        print(f"  {name}. {s['title']}: до {stage_end[s['id']].isoformat()}")
     print("Даты не применены. После согласования: python3 bin/plan.py apply --yes")
     return 0
 
@@ -100,13 +107,40 @@ def cmd_apply(a: argparse.Namespace) -> int:
     state = load(STATE / "topics.json")
     course = json.loads((ROOT / "course" / "topics.json").read_text(encoding="utf-8"))
     rows, _ = forecast(cfg, course)
-    for tid, _, _, d in rows:
-        if tid in state["topics"]:
-            state["topics"][tid]["planned_end"] = d.isoformat()
+    planned = {tid: d for tid, _, _, d in rows}
+    for tid, st in state["topics"].items():
+        if tid in planned:
+            st["planned_end"] = planned[tid].isoformat()
+        elif st.get("status") != "closed":
+            st["planned_end"] = None
     cfg["schedule"]["agreed"] = True
     dump(STATE / "topics.json", state)
     dump(CONFIG, cfg)
     print(f"Даты записаны. Окончание курса ≈ {rows[-1][3].isoformat()}. Отметьте это в state/progress.md")
+    return 0
+
+
+def cmd_tracks(a: argparse.Namespace) -> int:
+    cfg = load(CONFIG)
+    course = json.loads((ROOT / "course" / "topics.json").read_text(encoding="utf-8"))
+    tracks = {x["id"]: x for x in course["stages"] if x.get("kind") == "track"}
+    if a.none:
+        cfg["tracks"] = []
+    elif a.ids:
+        ids = [x.upper() for x in a.ids]
+        bad = [x for x in ids if x not in tracks]
+        if bad:
+            sys.exit(f"Нет треков {bad}. Есть: {', '.join(track_ids(course))}")
+        cfg["tracks"] = sorted(set(ids), key=list(tracks).index)
+    if a.none or a.ids:
+        cfg["schedule"]["agreed"] = False
+        dump(CONFIG, cfg)
+    chosen = cfg.get("tracks", [])
+    for tid, t in tracks.items():
+        mark = "✓" if tid in chosen else " "
+        print(f"[{mark}] {tid} {t['title']} — {t['hours']} ч, после этапа {t['after'][1:]}")
+    if a.none or a.ids:
+        print("Треки сохранены. Сроки изменились: plan.py forecast → согласовать → apply --yes")
     return 0
 
 
@@ -119,6 +153,10 @@ def main() -> int:
         p.add_argument(f"--{d}", type=int)
     p.add_argument("--break", dest="breaks", action="append", help="ГГГГ-ММ-ДД:ГГГГ-ММ-ДД")
     p.set_defaults(f=cmd_set)
+    p = sub.add_parser("tracks")
+    p.add_argument("ids", nargs="*")
+    p.add_argument("--none", action="store_true")
+    p.set_defaults(f=cmd_tracks)
     sub.add_parser("forecast").set_defaults(f=cmd_forecast)
     p = sub.add_parser("apply")
     p.add_argument("--yes", action="store_true")

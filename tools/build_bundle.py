@@ -32,14 +32,17 @@ def section(rel):
 
 skills = sorted(os.path.relpath(p, ROOT) for p in glob.glob(os.path.join(ROOT, ".claude/skills/*/SKILL.md")))
 stage_docs = sorted_md("0[0-9]-*.md") + sorted_md("10-*.md")
+track_docs = sorted_md("1[1-9]-track-*.md")
 
 parts = [
     ("ЧАСТЬ 0. Правила ментора", ["tools/project-instructions.md", "CLAUDE.md", "mentoring/harness.md", "mentoring/format.md", "mentoring/lesson-packets.md", "mentoring/rubrics.md"] + skills),
     ("ЧАСТЬ 1. Этапы, чекпоинты, Сборник, карьера", ["README.md"] + stage_docs + ["resources.md"]),
     ("ЧАСТЬ 2. Мастерская: инструментарий и разборы (ядро курса)", ["knowledge/dramaturgy/README.md"] + [p for p in sorted_md("knowledge/dramaturgy/*.md") if not p.endswith("README.md")]),
+    ("ЧАСТЬ 2а. Теория ядра", sorted_md("knowledge/theory/*.md")),
     ("ЧАСТЬ 3. Справочники", ["knowledge/reference/craft.md"] + sorted_md("knowledge/reference/myth/*.md") + sorted_md("knowledge/reference/canon/*.md")),
     ("ЧАСТЬ 4. Шаблоны ученицы", sorted_md("templates/state/*.md")),
     ("ЧАСТЬ 5. Лекции — справочник по контексту", ["knowledge/lectures/README.md"] + [p for p in sorted_md("knowledge/lectures/*.md") if not p.endswith("README.md")]),
+    ("ЧАСТЬ 6. Треки по выбору", track_docs + sorted_md("knowledge/tracks/*.md")),
 ]
 
 header = """# Курс «Литературное мастерство и интертекст» — весь курс в одном файле

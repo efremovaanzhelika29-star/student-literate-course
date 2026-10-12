@@ -95,6 +95,8 @@ def cmd_init(a: argparse.Namespace) -> int:
                   "3. Поворот:\n\n4. Финал (последняя фраза — образ, не вывод):\n\n5. Приём-источник:\n")
         return 0
     qs = "\n".join(f"## Вопрос {i}\n\nОтвет:\n\n" for i in range(1, a.questions + 1))
+    if p.get("works"):
+        head += f"\nМатериал: {p['works']}\n"
     write_new(d / "answer.md", f"{head}\nВопросы ментор выдаёт в чате. Отвечайте под номерами одним заходом. "
               "Прогноз (если просят) пишите до чтения продолжения.\n\n" + qs)
     return 0

@@ -20,7 +20,7 @@ ROOT = Path(__file__).resolve().parent.parent
 STATE = ROOT / "state"
 LESSON = STATE / "lesson.json"
 MODES = ("onboarding", "learn", "practice", "check", "review", "mock", "status", "pause")
-REF_RE = re.compile(r"^(ONBOARDING|T\d{2}(-P\d)?|CP[1-6]|MOCK)$")
+REF_RE = re.compile(r"^(ONBOARDING|T\d{2}(-P\d)?|CP[1-6]|CPT[1-7]|MOCK)$")
 
 
 def load() -> dict:
@@ -37,7 +37,7 @@ def errors_of(d: dict) -> list[str]:
     if errs:
         return errs
     if not REF_RE.match(str(d["task_reference"])):
-        errs.append(f"task_reference {d['task_reference']!r}: ожидается ONBOARDING, Tnn, Tnn-Pn, CPn или MOCK")
+        errs.append(f"task_reference {d['task_reference']!r}: ожидается ONBOARDING, Tnn, Tnn-Pn, CPn, CPTn или MOCK")
     if d["mode"] not in MODES:
         errs.append(f"mode {d['mode']!r}: ожидается одно из {MODES}")
     if not isinstance(d["await_fix"], list):

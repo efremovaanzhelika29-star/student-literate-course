@@ -13,7 +13,8 @@
   close <тема> --protocol F [--weak "a; b"]   закрыть тему по протоколу /check
   shaky <тема> [--weak "a; b"]     пометить тему шаткой
   review <тема> --protocol F       записать повторение (протокол определяет итог)
-  cp <CPn> [--protocol F --artifact ПУТЬ]     статус чекпоинта или сдача
+  cp <CPn|CPTn> [--protocol F --artifact ПУТЬ]  статус чекпоинта или сдача
+  migrate                          добавить в состояние новые темы и чекпоинты курса
 Минимум Python 3.11, без внешних зависимостей.
 """
 from __future__ import annotations
@@ -24,6 +25,9 @@ import json
 import re
 import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from courselib import chosen_tracks, route_stages, route_topics, stage_checkpoint, track_ids  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 COURSE = ROOT / "course" / "topics.json"
@@ -41,10 +45,16 @@ def load_course() -> dict:
     return json.loads(COURSE.read_text(encoding="utf-8"))
 
 
-def load_state() -> dict:
+def load_state(allow_missing: bool = False) -> dict:
     if not STATE.exists():
         sys.exit("Нет state/topics.json. Новый ученик: python3 bin/init_learner.py (см. ONBOARDING.md)")
-    return json.loads(STATE.read_text(encoding="utf-8"))
+    state = json.loads(STATE.read_text(encoding="utf-8"))
+    if not allow_missing:
+        course = load_course()
+        if any(t["id"] not in state["topics"] for t in course["topics"]) or \
+                any(c["id"] not in state["checkpoints"] for c in course["checkpoints"]):
+            sys.exit("Курс обновился: в состоянии нет новых тем. Сначала ./bin/track.py migrate")
+    return state
 
 
 def save_state(state: dict) -> None:
@@ -111,7 +121,7 @@ def parse_protocol(path: str) -> dict:
 
 def cmd_validate(_: argparse.Namespace) -> int:
     course = load_course()
-    state = load_state()
+    state = load_state(allow_missing=True)
     errors = []
     ids = topic_ids(course)
     st_ids = list(state.get("topics", {}).keys())
@@ -140,7 +150,14 @@ def cmd_validate(_: argparse.Namespace) -> int:
     for cp in course["checkpoints"]:
         if cp["id"] not in state.get("checkpoints", {}):
             errors.append(f"в состоянии нет чекпоинта {cp['id']}")
+    cfg = STATE_DIR / "config.json"
+    if cfg.exists():
+        bad = [x for x in json.loads(cfg.read_text(encoding="utf-8")).get("tracks", []) if x not in track_ids(course)]
+        if bad:
+            errors.append(f"config.json: неизвестные треки {bad}; есть {track_ids(course)}")
     if errors:
+        if any(e.startswith("в состоянии нет") for e in errors):
+            errors.append("курс обновился — добавить новое: ./bin/track.py migrate")
         print("ОШИБКИ:\n- " + "\n- ".join(errors))
         return 1
     print(f"OK: {len(ids)} тем, {len(course['checkpoints'])} чекпоинтов")
@@ -160,14 +177,20 @@ def cmd_status(a: argparse.Namespace) -> int:
     course = load_course()
     state = load_state()
     print(f"Сегодня {today().isoformat()}")
-    for s in course["stages"]:
+    tracks = chosen_tracks(course)
+    for s in route_stages(course, tracks):
         if s["id"] == "S0":
             continue
         ts = [t for t in course["topics"] if t["stage"] == s["id"]]
-        closed = sum(1 for t in ts if state["topics"][t["id"]]["status"] == "closed")
-        cp = state["checkpoints"].get(f"CP{s['n']}", {})
+        closed = sum(1 for t in ts if state["topics"].get(t["id"], {}).get("status") == "closed")
+        cp_id = stage_checkpoint(course, s["id"])
+        cp = state["checkpoints"].get(cp_id, {})
         mark = "пройден" if cp.get("passed_on") else "не пройден"
-        print(f"  Этап {s['n']}. {s['title']}: закрыто тем {closed}/{len(ts)}; CP{s['n']} {mark}")
+        name = f"Этап {s['n']}" if s.get("kind", "core") == "core" else f"Трек {s['id']}"
+        print(f"  {name}. {s['title']}: закрыто тем {closed}/{len(ts)}; {cp_id} {mark}")
+    rest = [x for x in track_ids(course) if x not in tracks]
+    if rest:
+        print("Треки не выбраны: " + ", ".join(rest) + " (выбор — bin/plan.py tracks)")
     active = [tid for tid, t in state["topics"].items() if t["status"] in ("learning", "practiced")]
     shaky = [tid for tid, t in state["topics"].items() if t["status"] == "shaky"]
     print("Активные темы: " + (", ".join(active) if active else "нет"))
@@ -182,7 +205,8 @@ def cmd_status(a: argparse.Namespace) -> int:
             behind.append(f"{tid} (план {pe})")
     if behind:
         print("Позади плана: " + ", ".join(behind))
-    nxt = next((t["id"] for t in course["topics"] if state["topics"][t["id"]]["status"] == "new"), None)
+    nxt = next((t["id"] for t in route_topics(course, tracks)
+                if state["topics"].get(t["id"], {}).get("status") == "new"), None)
     print("Следующая новая тема: " + (nxt or "все начаты"))
     if a.mentor:
         for tid, t in state["topics"].items():
@@ -336,7 +360,7 @@ def cmd_cp(a: argparse.Namespace) -> int:
     cp_id = a.cp.upper()
     cp = next((c for c in course["checkpoints"] if c["id"] == cp_id), None)
     if not cp:
-        sys.exit("Чекпоинты: CP1–CP6")
+        sys.exit("Чекпоинты: " + ", ".join(c["id"] for c in course["checkpoints"]))
     state = load_state()
     ts = [t["id"] for t in course["topics"] if t["stage"] == cp["stage"]]
     open_ts = [tid for tid in ts if state["topics"][tid]["status"] != "closed"]
@@ -363,6 +387,36 @@ def cmd_cp(a: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_migrate(_: argparse.Namespace) -> int:
+    course = load_course()
+    state = load_state(allow_missing=True)
+    added = []
+    for t in course["topics"]:
+        if t["id"] not in state["topics"]:
+            state["topics"][t["id"]] = {"status": "new", "packets_passed": [], "weak": [],
+                                        "planned_end": None, "next_review": None}
+            added.append(t["id"])
+    for c in course["checkpoints"]:
+        if c["id"] not in state["checkpoints"]:
+            state["checkpoints"][c["id"]] = {"passed_on": None}
+            added.append(c["id"])
+    extra = [tid for tid in state["topics"] if tid not in topic_ids(course)]
+    state["course_version"] = course["version"]
+    save_state(state)
+    print("Добавлено: " + (", ".join(added) if added else "ничего — состояние актуально"))
+    if extra:
+        print("В состоянии есть темы, которых нет в курсе (не удалены): " + ", ".join(extra))
+    cfg = STATE_DIR / "config.json"
+    if cfg.exists():
+        c = json.loads(cfg.read_text(encoding="utf-8"))
+        if "tracks" not in c:
+            c["tracks"] = []
+            cfg.write_text(json.dumps(c, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+            print("В config.json добавлен пустой список треков: выбрать — bin/plan.py tracks")
+    print("Сроки новых тем не назначены: bin/plan.py forecast → согласовать → apply --yes")
+    return 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -374,6 +428,7 @@ def main() -> int:
     p = sub.add_parser("close"); p.add_argument("topic"); p.add_argument("--protocol", required=True); p.add_argument("--weak"); p.set_defaults(f=cmd_close)
     p = sub.add_parser("shaky"); p.add_argument("topic"); p.add_argument("--weak"); p.set_defaults(f=cmd_shaky)
     p = sub.add_parser("review"); p.add_argument("topic"); p.add_argument("--protocol", required=True); p.set_defaults(f=cmd_review)
+    sub.add_parser("migrate").set_defaults(f=cmd_migrate)
     p = sub.add_parser("cp"); p.add_argument("cp"); p.add_argument("--protocol"); p.add_argument("--artifact"); p.set_defaults(f=cmd_cp)
     a = ap.parse_args()
     return a.f(a)
